@@ -1,47 +1,38 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="app">
+    <div class="inventory">
+      <InventoryInfo/>
+      <Inventory/>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
+<script lang="ts">
+import InventoryInfo from "@/components/InventoryInfo.vue";
+import Inventory from "@/components/Inventory.vue";
+
+export default {
+  components: {Inventory, InventoryInfo}
+}
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
+.app {
+  background: #1E1E1E;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.inventory{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 }
 </style>
