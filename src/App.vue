@@ -19,7 +19,7 @@ export default {
 
 <style scoped>
 .app {
-  background: #1E1E1E;
+  background: #262626;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -27,6 +27,7 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 24px;
+  cursor: url("src/components/icons/default-cursor.svg"), auto;
 }
 .inventory{
   display: flex;
@@ -34,5 +35,7 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 24px;
+  width: 100%;
+  height: 100%;
 }
 </style>
