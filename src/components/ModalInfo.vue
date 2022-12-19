@@ -1,26 +1,24 @@
 <template>
-  <teleport to=".inventory-page">
-    <div class="modal">
-      <button class="close" @click="emit('hideModal')">
-        <img class="cross" src="src/components/icons/CarbonClose.svg" alt="">
-      </button>
-      <img class="modal-image" :src="image" alt="">
-      <div class="line"/>
-      <div class="blur title"/>
-      <div class="skeleton">
-        <div class="blur line"/>
-        <div class="blur line"/>
-        <div class="blur line"/>
-        <div class="blur line-1"/>
-        <div class="blur line-2"/>
-      </div>
-      <div class="line"/>
-     <FormData v-if="deleteItem" @hideFormData="deleteItem = false"/>
-      <button class="delete" @click="deleteItem = true">
-        Удалить предмет
-      </button>
+  <div class="modal">
+    <button class="close" @click="emit('hideModal')">
+      <img class="cross" src="src/components/icons/CarbonClose.svg" alt="">
+    </button>
+    <img class="modal-image" :src="image" alt="">
+    <div class="line"/>
+    <div class="blur title"/>
+    <div class="skeleton">
+      <div class="blur line"/>
+      <div class="blur line"/>
+      <div class="blur line"/>
+      <div class="blur line-1"/>
+      <div class="blur line-2"/>
     </div>
-  </teleport>
+    <div class="line"/>
+    <FormData v-if="deleteItem" @hideFormData="deleteItem = false"/>
+    <button class="delete" @click="deleteItem = true">
+      Удалить предмет
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -32,8 +30,8 @@ defineProps({
 })
 
 const emit = defineEmits(['hideModal'])
-
 const deleteItem = ref<boolean>(false)
+
 </script>
 
 <style scoped>
@@ -42,29 +40,31 @@ const deleteItem = ref<boolean>(false)
   right: 0;
   top: 0;
   bottom: 0;
-  max-width: 250px;
+  width: 250px;
   background: rgba(38, 38, 38, 0.5);
   border-left: 1px solid #4D4D4D;
   backdrop-filter: blur(8px);
   border-radius: 0 12px 12px 0;
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
   gap: 20px;
+  z-index: 4;
 }
 
-.close{
+.close {
   background: transparent;
   border: none;
   outline: none;
   position: absolute;
   top: 8px;
   right: 8px;
+  cursor: url("src/components/icons/default-cursor.svg"), auto;
 }
 
-.cross{
+.cross {
   width: 24px;
   height: 24px;
 }
@@ -116,7 +116,7 @@ const deleteItem = ref<boolean>(false)
   width: 80px;
 }
 
-.delete{
+.delete {
   background: #FA7272;
   border-radius: 8px;
   padding: 11px 55px;
@@ -128,5 +128,6 @@ const deleteItem = ref<boolean>(false)
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
+  cursor: url("src/components/icons/default-cursor.svg"), auto;
 }
 </style>

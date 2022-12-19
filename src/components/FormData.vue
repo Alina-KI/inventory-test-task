@@ -62,6 +62,7 @@ const emit = defineEmits(['hideFormData'])
   line-height: 17px;
   color: #FFFFFF;
   padding: 10px 15px;
+  cursor: url("src/components/icons/default-cursor.svg"), auto;
 }
 
 .cancel {
@@ -81,5 +82,6 @@ const emit = defineEmits(['hideFormData'])
   font-size: 14px;
   line-height: 17px;
   color: #2D2D2D;
+  cursor: url("src/components/icons/default-cursor.svg"), auto;
 }
 </style>

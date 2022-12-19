@@ -10,7 +10,9 @@
     <div class="active-item" ref="activeItemRef">
       <img :src="activeItem.item.image" alt="">
     </div>
-    <ModalInfo v-if="showModal" :image="activeItem.item.image" @hideModal="showModal = false"/>
+    <Transition name="open-modal" mode="out-in">
+      <ModalInfo v-if="showModal" :image="activeItem.item.image" @hideModal="showModal = false"/>
+    </Transition>
   </div>
 </template>
 
@@ -91,6 +93,7 @@ const mousedown = (e: MouseEvent, item: Item) => {
   grid-template-rows: repeat(5, 1fr);
   gap: 1px;
   position: relative;
+  overflow: hidden;
 }
 
 .item {
@@ -124,7 +127,7 @@ const mousedown = (e: MouseEvent, item: Item) => {
   border-radius: 0 0 12px 0;
 }
 
-.image{
+.image {
   width: 54px;
   height: 54px;
 }
@@ -166,5 +169,21 @@ const mousedown = (e: MouseEvent, item: Item) => {
   opacity: 0.4;
   width: 16px;
   height: 16px;
+}
+
+.open-modal-enter-active {
+  transition: all 1s ease;
+  right: 0;
+}
+
+.open-modal-leave-active {
+  transition: all 1s ease;
+}
+
+.open-modal-enter-from,
+.open-modal-leave-to {
+  transition: all 1s ease;
+  transform: translatex(100%);
+  right: -250px;
 }
 </style>
