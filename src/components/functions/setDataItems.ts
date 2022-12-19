@@ -5,17 +5,17 @@ export const setDataItems = () => {
     const items = ref<Item[]>([
         {
             id: 0,
-            image: 'src/components/icons/Item1.svg',
+            image: 'src/components/icons/Item1.png',
             count: 4
         },
         {
             id: 1,
-            image: 'src/components/icons/Item2.svg',
+            image: 'src/components/icons/Item2.png',
             count: 2
         },
         {
             id: 2,
-            image: 'src/components/icons/Item3.svg',
+            image: 'src/components/icons/Item3.png',
             count: 5
         }
     ])
