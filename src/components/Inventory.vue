@@ -10,7 +10,7 @@
     <div class="active-item" ref="activeItemRef">
       <img :src="activeItem.item.image" alt="">
     </div>
-    <ModalInfo v-if="showModal" :image="activeItem.item.image"/>
+    <ModalInfo v-if="showModal" :image="activeItem.item.image" @hideModal="showModal = false"/>
   </div>
 </template>
 
