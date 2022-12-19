@@ -1,7 +1,8 @@
 <template>
   <div class="inventory-page" ref="mapRef">
-    <div class="item" v-for="item in items" ref="itemRef" :key="item.id" @mousedown="mousedown($event, item)">
-      <img :src="item.image" alt="">
+    <div class="item" v-for="item in items" ref="itemRef" :key="item.id"
+         @mousedown="mousedown($event, item)" @click="showModal = true">
+      <img v-if="item.image !== ''" class="image" :src="item.image" alt="">
       <div v-if="item.count > 0" class="count-block">
         <span class="count">{{ item.count }}</span>
       </div>
@@ -9,17 +10,19 @@
     <div class="active-item" ref="activeItemRef">
       <img :src="activeItem.item.image" alt="">
     </div>
+    <ModalInfo v-if="showModal" :image="activeItem.item.image"/>
   </div>
 </template>
 
 <script setup lang="ts">
-
 import {ref} from "vue";
 import type {Item} from "@/types/item";
 import type {ActiveItem} from "@/types/activeItem";
 import {moveItem} from "@/components/functions/moveItem";
 import {setDataItems} from "@/components/functions/setDataItems";
+import ModalInfo from "@/components/ModalInfo.vue";
 
+const showModal = ref<boolean>(false)
 const items = !!localStorage.getItem('items')
     ? ref<Item[]>(JSON.parse(localStorage.getItem('items')!))
     : setDataItems()
@@ -37,7 +40,7 @@ const mapRef = ref<HTMLDivElement | null>(null)
 const itemRef = ref<HTMLDivElement | null>(null)
 const activeItemRef = ref<HTMLDivElement | null>(null)
 
-function mousedown(e: MouseEvent, item: Item) {
+const mousedown = (e: MouseEvent, item: Item) => {
   if (item.image !== '') {
     activeItemRef.value!.style.top = 50 * ((item.id / 5) > 1 ? (item.id / 5) : 0) + 'px'
     activeItemRef.value!.style.left = 100 * item.id + 'px'
@@ -45,7 +48,7 @@ function mousedown(e: MouseEvent, item: Item) {
     window.addEventListener('mousemove', mousemove)
     window.addEventListener('mouseup', mouseup)
 
-    let id = 0
+    let id: number = 0
 
     activeItem.value = {
       item: item,
@@ -119,6 +122,11 @@ function mousedown(e: MouseEvent, item: Item) {
 
 .item:nth-child(25) {
   border-radius: 0 0 12px 0;
+}
+
+.image{
+  width: 54px;
+  height: 54px;
 }
 
 .active-item {
